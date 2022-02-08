@@ -2987,14 +2987,6 @@ textarea.form-control-lg {
   z-index: 3;
 }
 
-.paginate_button {
-  background-color: blue !important;
-}
-
-.page-link {
-  color: #A3A3A5 !important;
-}
-
 .btn {
   display: inline-block;
   font-weight: 400;

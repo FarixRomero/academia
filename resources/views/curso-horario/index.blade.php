@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card card-primary">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -60,8 +60,11 @@
                                                 <form action="{{ route('curso-horarios.destroy', $cursoHorario->id) }}"
                                                     method="POST">
                                                     <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('curso-horarios.show', $cursoHorario->id) }}"><i
-                                                            class="fa fa-fw fa-eye"></i> Show</a>
+                                                        href="{{ route('sesion.indexByCursoHorario', $cursoHorario->id) }}"><i
+                                                            class="fa fa-fw fa-book"></i> Sesiones</a>
+                                                    <a class="btn btn-sm btn-secondary "
+                                                        href="{{ route('sesion.detailByCursoHorario', $cursoHorario->id) }}"><i
+                                                            class="fa fa-fw fa-book"></i> Ver</a>
                                                     <a class="btn btn-sm btn-success"
                                                         href="{{ route('curso-horarios.edit', $cursoHorario->id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> Edit</a>

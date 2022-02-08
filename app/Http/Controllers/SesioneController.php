@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sesione;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /**
  * Class SesioneController
@@ -29,6 +30,18 @@ class SesioneController extends Controller
 
         return view('sesione.detail', compact('sesiones'));
     }
+    public function detailById($id)
+    {
+        $sesion = Sesione::find($id);
+
+        return view('sesione.detailById', compact('sesion'));
+    }
+    public function detailByCursoHorario($id)
+    {
+        $sesiones = Sesione::where('curso_horario_id',$id)->get();
+
+        return view('sesione.detail', compact('sesiones'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -51,11 +64,13 @@ class SesioneController extends Controller
     {
         // request()->validate(Sesione::$rules);
         // $request['descripcion'] = nl2br($request['descripcion']);
-        dd($request->toArray());
+        // dd($request->toArray());
         $sesione = Sesione::create($request->all());
+        Alert:: toast('Se Creo Correctamente!','success');
 
-        return redirect()->route('sesiones.index')
-            ->with('success', 'Sesione created successfully.');
+        return back();
+        // return redirect()->route('sesiones.index')
+        //     ->with('success', 'Sesione created successfully.');
     }
 
     /**
@@ -69,6 +84,13 @@ class SesioneController extends Controller
         $sesione = Sesione::find($id);
 
         return view('sesione.show', compact('sesione'));
+    }
+    public function indexByCursoHorario($id)
+    {
+        $curso_horario_id= $id;
+        $sesiones = Sesione::where('curso_horario_id',$id)->paginate();
+        return view('sesione.indexByCursoHorario', compact('sesiones','curso_horario_id'))
+        ->with('i', (request()->input('page', 1) - 1) * $sesiones->perPage());
     }
 
     /**
@@ -109,8 +131,8 @@ class SesioneController extends Controller
     public function destroy($id)
     {
         $sesione = Sesione::find($id)->delete();
-
-        return redirect()->route('sesiones.index')
-            ->with('success', 'Sesione deleted successfully');
+        return back();
+        // return redirect()->route('sesiones.index')
+        //     ->with('success', 'Sesione deleted successfully');
     }
 }

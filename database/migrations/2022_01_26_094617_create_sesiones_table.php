@@ -18,7 +18,7 @@ class CreateSesionesTable extends Migration
             $table->unsignedInteger('curso_horario_id');
             $table->foreign('curso_horario_id')->references('id')->on('curso_horarios');
             $table->string('titulo');
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

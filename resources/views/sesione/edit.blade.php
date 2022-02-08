@@ -1,8 +1,11 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
+@extends('adminlte::page')
 
-@section('template_title')
-    Update Sesione
-@endsection
+@section('title', 'Dashboard')
+
+@section('content_header')
+@stop
+
 
 @section('content')
     <section class="content container-fluid">

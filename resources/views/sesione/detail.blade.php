@@ -7,42 +7,68 @@
 @stop
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('curso-horarios.index') }}">Cursos</a></li>
+            <li class="breadcrumb-item active">Sesiones</li>
+        </ol>
+    </nav>
     <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">Sesiones</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('sesiones.index') }}"> Back</a>
-                        </div>
-                    </div>
+            <div class="col-md-12 p-1">
 
-                    <div class="card-body">
-                        @foreach ($sesiones as $sesion)
-                            @if ($sesion->is_active)
-                                <div class="form-group">
-                                    <h2 class="text-primary">{{ $sesion->titulo }}</h2>
+                @foreach ($sesiones as $sesion)
+                    @if ($sesion->is_active)
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">{{ $sesion->titulo }}</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
                                 </div>
-                                <div class="form-group">
-                                    <p>
-                                        {!! nl2br(e($sesion->descripcion)) !!}
-                                    </p>
-                                </div>
-                                @foreach ($sesion->files as $file)
-                                    @if ($file->tipo_file==1)
-                                        <a href=" {{asset($file->url)}}"><i class="fa fa-file-pdf"></i>
-                                            <p> {{$file->titulo}}</p></a>
-                                    @endif
-                                @endforeach
-                            @endif
-                        @endforeach
 
-                    </div>
-                </div>
+                            </div>
+                            <div class="card-body" style="display: block;">
+                                <p> {!! nl2br(e($sesion->descripcion)) !!}</p>
+                                @if ($sesion->files->first())
+                                    <hr>
+                                    <h5>Materiales de la Sesión</h5>
+
+                                    <div class="row">
+                                        @foreach ($sesion->files as $file)
+                                            @if ($file->tipo_file == 1)
+                                                <div class="col-md-4">
+                                                    <a href=" {{ asset($file->url) }}" download>
+                                                        <div class="info-box bg-blue-grey">
+                                                            <span class="info-box-icon bg-info elevation-1">
+                                                                <i class="fa fa-file-pdf fa"></i>
+                                                            </span>
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text"> {{ $file->titulo }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
+        </div>
     </section>
+@endsection
+@section('css')
+    <style>
+        .breadcrumb {
+            margin-bottom: 0;
+            background-color: #F4F6F9;
+        }
+    </style>
 @endsection

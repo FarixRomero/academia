@@ -20,7 +20,7 @@ class CreateFilesTable extends Migration
             $table->unsignedInteger('tipo_file')->default(1);
             $table->unsignedInteger('orden')->nullable()->default(0);
             $table->string("titulo")->nullable();
-            $table->string("descripcion")->nullable();
+            $table->text("descripcion")->nullable();
             $table->string("url")->nullable();
             $table->timestamps();
         });
