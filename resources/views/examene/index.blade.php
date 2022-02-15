@@ -1,29 +1,27 @@
 {{-- @extends('layouts.app') --}}
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Horario')
 
 @section('content_header')
-    <h1>Sesiones</h1>
-@stop
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-6"> 
-                @include('sesione.formv2')
+            <div class="col-sm-6">
+                @include('examene.formIndex')
             </div>
             <div class="col-sm-6">
-                <div class="card card-secondary">
+                <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                Administrar Sesiones
+                                {{ __('Examene') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('sesiones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('examenes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -42,28 +40,38 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Curso Horario Id</th>
+										<th>Sesione Id</th>
 										<th>Titulo</th>
 										<th>Descripcion</th>
 										<th>Is Active</th>
+										<th>Hora Inicio</th>
+										<th>Duracion</th>
+										<th>Hora Fin</th>
+										<th>Url</th>
+										<th>Url2</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($sesiones as $sesione)
+                                    @foreach ($examenes as $examene)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $sesione->curso_id }}</td>
-											<td>{{ $sesione->titulo }}</td>
-											<td>{{ $sesione->descripcion }}</td>
-											<td>{{ $sesione->is_active }}</td>
+											<td>{{ $examene->sesione_id }}</td>
+											<td>{{ $examene->titulo }}</td>
+											<td>{{ $examene->descripcion }}</td>
+											<td>{{ $examene->is_active }}</td>
+											<td>{{ $examene->hora_inicio }}</td>
+											<td>{{ $examene->duracion }}</td>
+											<td>{{ $examene->hora_fin }}</td>
+											<td>{{ $examene->url }}</td>
+											<td>{{ $examene->url2 }}</td>
 
                                             <td>
-                                                <form action="{{ route('sesiones.destroy',$sesione->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('sesiones.show',$sesione->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('sesiones.edit',$sesione->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('examenes.destroy',$examene->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('examenes.show',$examene->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('examenes.edit',$examene->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -76,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $sesiones->links() !!}
+                {!! $examenes->links() !!}
             </div>
         </div>
     </div>

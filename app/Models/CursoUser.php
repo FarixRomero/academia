@@ -5,27 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Sesione
+ * Class CursoUser
  *
  * @property $id
  * @property $curso_id
- * @property $titulo
- * @property $descripcion
+ * @property $user_id
+ * @property $fecha_inicio
  * @property $is_active
  * @property $created_at
  * @property $updated_at
  *
- * @property CursoHorario $cursoHorario
+ * @property Curso $curso
+ * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Sesione extends Model
+class CursoUser extends Model
 {
     
     static $rules = [
-		'curso_id' => 'required',
-		'titulo' => 'required',
-		'descripcion' => 'required',
+		'fecha_inicio' => 'required',
 		'is_active' => 'required',
     ];
 
@@ -36,27 +35,23 @@ class Sesione extends Model
      *
      * @var array
      */
-    protected $fillable = ['curso_id','titulo','descripcion','is_active'];
+    protected $fillable = ['curso_id','user_id','fecha_inicio','is_active'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    // public function cursoHorario()
-    // {
-    //     return $this->hasOne('App\Models\Curso', 'id', 'curso_id');
-    // }
     public function curso()
     {
         return $this->hasOne('App\Models\Curso', 'id', 'curso_id');
     }
-    public function files()
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
     {
-        return $this->hasMany('App\Models\File', 'sesione_id', 'id');
-    }
-    public function examenes()
-    {
-        return $this->hasMany('App\Models\Examene', 'sesione_id', 'id');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
     
 

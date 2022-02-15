@@ -9,7 +9,7 @@
 @section('content')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('cursos.index') }}">Cursos</a></li>
+            {{-- <li class="breadcrumb-item"><a href="{{ route('cursos.index') }}">Cursos</a></li> --}}
             <li class="breadcrumb-item active">Sesiones</li>
         </ol>
     </nav>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="card-body" style="display: block;">
                                 <p> {!! nl2br(e($sesion->descripcion)) !!}</p>
-                                @if ($sesion->files->first()||$sesion->examenes->first() )
+                                @if ($sesion->files->first() || $sesion->examenes->first())
                                     <hr>
                                     <h5>Materiales de la Sesión</h5>
 
@@ -54,7 +54,7 @@
                                         @endforeach
                                         @foreach ($sesion->examenes as $examen)
                                             <div class="col-md-4">
-                                                <a  href="{{ route('examenes.show',$examen->id) }}">
+                                                <a href="{{ route('student.examen.show', [ request()->route('id'),$examen->id]) }}">
                                                     <div class="info-box bg-blue-grey">
                                                         <span class="info-box-icon bg-info elevation-1">
                                                             <i class="fa fa-sticky-note"></i>

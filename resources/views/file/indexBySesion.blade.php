@@ -6,15 +6,16 @@
 @section('content_header')
 @stop
 @section('content')
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('curso-horarios.index')}}">Cursos</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('sesion.indexByCursoHorario', request()->route('id') ) }}">Sesiones</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Archivos</li>
-    </ol>
-  </nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('cursos.index') }}">Cursos</a></li>
+            <li class="breadcrumb-item"><a
+                    href="{{ route('sesion.indexByCurso', request()->route('idCursoHorario')) }}">Sesiones</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Archivos</li>
+        </ol>
+    </nav>
     <div class="container-fluid">
-        
+
         <div class="row">
             <div class="col-sm-6">
                 @include('file.formIndex')
@@ -28,11 +29,12 @@
                                 {{ __('File') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('files.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                            <div class="float-right">
+                                <a href="{{ route('files.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Create New') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -47,13 +49,13 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Sesione Id</th>
-										<th>Tipo File</th>
-										<th>Orden</th>
-										<th>Titulo</th>
-										<th>Descripcion</th>
-										<th>Url</th>
+
+                                        <th>Sesione Id</th>
+                                        <th>Tipo File</th>
+                                        <th>Orden</th>
+                                        <th>Titulo</th>
+                                        <th>Descripcion</th>
+                                        <th>Url</th>
 
                                         <th></th>
                                     </tr>
@@ -62,21 +64,26 @@
                                     @foreach ($files as $file)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $file->sesione_id }}</td>
-											<td>{{ $file->tipo_file }}</td>
-											<td>{{ $file->orden }}</td>
-											<td>{{ $file->titulo }}</td>
-											<td>{{ $file->descripcion }}</td>
-											<td>{{ $file->url }}</td>
+
+                                            <td>{{ $file->sesione_id }}</td>
+                                            <td>{{ $file->tipo_file }}</td>
+                                            <td>{{ $file->orden }}</td>
+                                            <td>{{ $file->titulo }}</td>
+                                            <td>{{ $file->descripcion }}</td>
+                                            <td>{{ $file->url }}</td>
 
                                             <td>
-                                                <form action="{{ route('files.destroy',$file->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('files.show',$file->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('files.edit',$file->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('files.destroy', $file->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('files.show', $file->id) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('files.edit', $file->id) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                                            class="fa fa-fw fa-trash"></i> Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -97,5 +104,6 @@
             margin-bottom: 0;
             background-color: #F4F6F9;
         }
+
     </style>
 @endsection

@@ -18,6 +18,7 @@ class CreateCursosTable extends Migration
             $table->string('name');
             $table->string('nivel');
             $table->string('code');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

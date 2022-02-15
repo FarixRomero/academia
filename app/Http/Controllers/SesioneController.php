@@ -30,15 +30,21 @@ class SesioneController extends Controller
 
         return view('sesione.detail', compact('sesiones'));
     }
+    public function detailStudent($id)
+    {
+        $sesiones = Sesione::where('curso_id',$id)->get();
+
+        return view('student.curso.detail', compact('sesiones'));
+    }
     public function detailById($id)
     {
         $sesion = Sesione::find($id);
 
         return view('sesione.detailById', compact('sesion'));
     }
-    public function detailByCursoHorario($id)
+    public function detailByCurso($id)
     {
-        $sesiones = Sesione::where('curso_horario_id',$id)->get();
+        $sesiones = Sesione::where('curso_id',$id)->get();
 
         return view('sesione.detail', compact('sesiones'));
     }
@@ -85,11 +91,11 @@ class SesioneController extends Controller
 
         return view('sesione.show', compact('sesione'));
     }
-    public function indexByCursoHorario($id)
+    public function indexByCurso($id)
     {
-        $curso_horario_id= $id;
-        $sesiones = Sesione::where('curso_horario_id',$id)->paginate();
-        return view('sesione.indexByCursoHorario', compact('sesiones','curso_horario_id'))
+        $curso_id= $id;
+        $sesiones = Sesione::where('curso_id',$id)->paginate();
+        return view('sesione.indexByCurso', compact('sesiones','curso_id'))
         ->with('i', (request()->input('page', 1) - 1) * $sesiones->perPage());
     }
 

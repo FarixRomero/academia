@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $sesione->name ?? 'Show Sesione' }}
+    {{ $cursoUser->name ?? 'Show Curso User' }}
 @endsection
 
 @section('content')
@@ -11,30 +11,30 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Sesione</span>
+                            <span class="card-title">Show Curso User</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('sesiones.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('curso-users.index') }}"> Back</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Curso Horario Id:</strong>
-                            {{ $sesione->curso_id }}
+                            <strong>Curso Id:</strong>
+                            {{ $cursoUser->curso_id }}
                         </div>
                         <div class="form-group">
-                            <strong>Titulo:</strong>
-                            {{ $sesione->titulo }}
+                            <strong>User Id:</strong>
+                            {{ $cursoUser->user_id }}
                         </div>
                         <div class="form-group">
-                            <strong>Descripcion:</strong>
-                            {{ $sesione->descripcion }}
+                            <strong>Fecha Inicio:</strong>
+                            {{ $cursoUser->fecha_inicio }}
                         </div>
                         <div class="form-group">
                             <strong>Is Active:</strong>
-                            {{ $sesione->is_active }}
+                            {{ $cursoUser->is_active }}
                         </div>
 
                     </div>

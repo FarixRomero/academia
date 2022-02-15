@@ -1,24 +1,24 @@
 {{-- @extends('layouts.app') --}}
 @extends('adminlte::page')
 
-@section('title', 'Cursos')
+@section('title', 'Horario')
 
 @section('content_header')
-@stop
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card card-primary">
+                <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Curso') }}
+                                {{ __('Examene') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('cursos.create') }}" class="btn btn-primary btn-sm float-right"
+                                <a href="{{ route('examenes.create') }}" class="btn btn-primary btn-sm float-right"
                                     data-placement="left">
                                     {{ __('Create New') }}
                                 </a>
@@ -33,38 +33,43 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover " id="cursos_table">
+                            <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
 
-                                        <th>Name</th>
-                                        <th>Nivel</th>
-                                        <th>Code</th>
+                                        <th>Curso Horario Id</th>
+                                        <th>Titulo</th>
+                                        <th>Descripcion</th>
+                                        <th>Is Active</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Duracion</th>
+                                        <th>Hora Fin</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($cursos as $curso)
+                                    @foreach ($examenes as $examene)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-                                            <td>{{ $curso->name }}</td>
-                                            <td>{{ $curso->nivel }}</td>
-                                            <td>{{ $curso->code }}</td>
-
+                                            <td>{{ $examene->curso_horario_id }}</td>
+                                            <td>{{ $examene->titulo }}</td>
+                                            <td>{{ $examene->descripcion }}</td>
+                                            <td>{{ $examene->is_active }}</td>
+                                            <td>{{ $examene->hora_inicio }}</td>
+                                            <td>{{ $examene->duracion }}</td>
+                                            <td>{{ $examene->hora_fin }}</td>
                                             <td>
-                                                <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
+                                                <form action="{{ route('examenes.destroy', $examene->id) }}"
+                                                    method="POST">
                                                     <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('sesion.detailByCurso', $curso->id) }}"><i
+                                                        href="{{ route('examenes.show', $examene->id) }}"><i
                                                             class="fa fa-fw fa-eye"></i> Show</a>
                                                     <a class="btn btn-sm btn-success"
-                                                        href="{{ route('cursos.edit', $curso->id) }}"><i
+                                                        href="{{ route('examenes.edit', $examene->id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('sesion.indexByCurso', $curso->id) }}"><i
-                                                            class="fa fa-fw fa-book"></i> Sesiones</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i
@@ -78,22 +83,9 @@
                         </div>
                     </div>
                 </div>
-                {!! $cursos->links() !!}
+                {!! $examenes->links() !!}
             </div>
         </div>
     </div>
 @endsection
 
-
-@section('js')
-
-    <script>
-        $(document).ready(function() {
-            $('#cursos_table').DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
-                }
-            });
-        });
-    </script>
-@stop

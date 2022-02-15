@@ -2,9 +2,9 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('curso_horario_id') }}
-            {{ Form::text('curso_horario_id', $sesione->curso_horario_id, ['class' => 'form-control' . ($errors->has('curso_horario_id') ? ' is-invalid' : ''), 'placeholder' => 'Curso Horario Id']) }}
-            {!! $errors->first('curso_horario_id', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('curso_id') }}
+            {{ Form::text('curso_id', $sesione->curso_id, ['class' => 'form-control' . ($errors->has('curso_id') ? ' is-invalid' : ''), 'placeholder' => 'Curso Horario Id']) }}
+            {!! $errors->first('curso_id', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('titulo') }}

@@ -38,6 +38,7 @@
     
     @endif
 
+    
     {{-- Livewire Styles --}}
     @if(config('adminlte.livewire'))
         @if(app()->version() >= 7)

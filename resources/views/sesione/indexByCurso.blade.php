@@ -4,10 +4,15 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Sesiones</h1>
 @stop
 
 @section('content')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('cursos.index') }}">Cursos</a></li>
+        <li class="breadcrumb-item active">Sesiones</li>
+    </ol>
+</nav>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6"> 
@@ -59,10 +64,11 @@
 											<td>{{ $sesione->titulo }}</td>
 											<td>{{ $sesione->descripcion }}</td>
 											<td>{{ $sesione->is_active }}</td>
-
                                             <td>
                                                 <form action="{{ route('sesiones.destroy',$sesione->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('sesiones.show',$sesione->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('sesiones.detailById',$sesione->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-secondary" href="{{ route('file.indexBySesion',[request()->route('id'),$sesione->id]) }}"><i class="fa fa-fw fa-file"></i>Archivos</a>
+                                                    <a class="btn btn-sm btn-info" href="{{ route('examenes.indexBySesion',[request()->route('id'),$sesione->id]) }}"><i class="fa fa-fw fa-file"></i>Examenes</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('sesiones.edit',$sesione->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
@@ -80,4 +86,12 @@
             </div>
         </div>
     </div>
+@endsection
+@section('css')
+    <style>
+        .breadcrumb {
+            margin-bottom: 0;
+            background-color: #F4F6F9;
+        }
+    </style>
 @endsection

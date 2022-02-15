@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSesionesTable extends Migration
+class CreateExamenesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,18 @@ class CreateSesionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sesiones', function (Blueprint $table) {
+        Schema::create('examenes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('curso_id');
-            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->unsignedInteger('sesione_id')->nullable();
+            $table->foreign('sesione_id')->references('id')->on('sesiones');
             $table->string('titulo');
             $table->text('descripcion');
             $table->boolean('is_active')->default(true);
+            $table->dateTime('hora_inicio');
+            $table->time('duracion');
+            $table->dateTime('hora_fin');
+            $table->string("url")->nullable();
+            $table->string("url2")->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +36,6 @@ class CreateSesionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sesiones');
+        Schema::dropIfExists('examenes');
     }
 }

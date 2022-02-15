@@ -33,8 +33,14 @@ class Curso extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','nivel','code'];
+    protected $fillable = ['name','nivel','code','is_active'];
 
-
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'curso_users');
+    }
+    public function sesiones()
+    {
+        return $this->hasMany('App\Models\Sesione', 'curso_id', 'id');
+    }
 }

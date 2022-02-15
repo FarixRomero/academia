@@ -10,16 +10,15 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Example select</label>
-            <select class="form-control" id="horario_id" name="horario_id">
-                @foreach ($horarios as $horario)
-                    <option value="{{ $horario->id }}">{{ $horario->name }}</option>
+            <select class="form-control" id="user_id" name="user_id">
+                @foreach ($usuarios as $usuario)
+                    <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
-            {{ Form::label('name') }}
-            {{ Form::text('name', $cursoHorario->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),'placeholder' => 'Name']) }}
-            {!! $errors->first('name', '<div class="invalid-feedback">:message</p>') !!}
+            <label for="exampleFormControlSelect1">Dia de Inicio</label>
+            <input type="date" name="fecha_inicio"  id="datePicker" class="form-control"  >
         </div>
         <div class=" form-group custom-control custom-switch">
             <input type="hidden" name="is_active" value="0">
@@ -31,3 +30,10 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>
+@section('js')
+    <script>
+
+    document.getElementById('datePicker').valueAsDate = new Date();
+
+    </script>
+@endsection

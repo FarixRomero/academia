@@ -4,8 +4,6 @@
 @section('title', 'Horario')
 
 @section('content_header')
-@stop
-
 @section('content')
     <section class="content container-fluid">
         <div class="">
@@ -15,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Horario</span>
+                        <span class="card-title">Update Curso User</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('horarios.update', $horario->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('curso-users.update', $cursoUser->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('horario.form')
+                            @include('curso-user.form')
 
                         </form>
                     </div>

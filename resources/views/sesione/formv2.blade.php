@@ -6,9 +6,9 @@
     <form method="POST" action="{{ route('sesiones.store') }}" role="form" enctype="multipart/form-data">
         <div class="card-body">
             {{-- <div class="form-group">
-                <label for="curso_horario_id">Curso horario id</label>
+                <label for="curso_id">Curso horario id</label>
             </div> --}}
-            <input type="hidden" class="form-control" id="curso_horario_id" name="curso_horario_id" placeholder="Enter email" value="{{$curso_horario_id}}">
+            <input type="hidden" class="form-control" id="curso_id" name="curso_id" placeholder="Enter email" value="{{$curso_id}}">
             <div class="form-group">
                 <label for="titulo">Titulo</label>
                 <input type="text" class="form-control" name="titulo" placeholder="Titulo">
@@ -17,14 +17,10 @@
                 <label for="descripcion">descripcion</label>
                 <input type="text" class="form-control" name="descripcion" placeholder="descripcion">
             </div>
-            <div class="form-group">
-                <label for="is_active">is_active</label>
-                <input type="text" class="form-control" name="is_active" placeholder="is_active">
-            </div>
-        
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <div class="form-group custom-control custom-switch">
+                <input type="hidden" name="is_active" value="0">
+                <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" value="1" checked>
+                <label class="custom-control-label" for="is_active">Esta Activo</label>
             </div>
         </div>
 

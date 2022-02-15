@@ -28,7 +28,7 @@ class FileController extends Controller
         return view('file.index', compact('files'))
             ->with('i', (request()->input('page', 1) - 1) * $files->perPage());
     }
-    public function indexBySesion($id)
+    public function indexBySesion($idCursoHorario,$id)
     {
         $files = File::where('sesione_id',$id)->paginate();
         $sesion_id=$id;

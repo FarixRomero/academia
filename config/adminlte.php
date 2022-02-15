@@ -146,7 +146,7 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -229,20 +229,22 @@ return [
         [
             'type' => 'sidebar-menu-search',
             'text' => 'Curso',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        ]
+        ,
+        ['header' => 'ADMINISTRADOR'],
+        // [
+        //     'text' => 'profile',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         [
             'text'    => 'Cursos',
+            'key'  => 'cursos',
             'icon'    => 'fas fa-fw fa-book',
             'submenu' => [
                 [
@@ -250,31 +252,23 @@ return [
                     'url'  => '/cursos',
                 ],
                 [
-                    'text' => 'Crear Horario',
-                    'url'  => '/horarios',
-                ],
-                [
-                    'text' => 'Crear Curso Horario',
-                    'url'  => '/curso-horarios',
-                ],
+                    'text'    => 'Sesiones',
+            'key'  => 'sesiones',
+            'icon'    => 'fas fa-fw fa-book',
+                ]
+               
             ],
         ],
-        ['header' => 'labels'],
+        // [
+        //     'text'    => 'Sesiones',
+        //     'key'  => 'sesiones',
+        //     'icon'    => 'fas fa-fw fa-book',
+        // ],
+        ['header' => 'ADMINISTRAR ALUMNOS'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+            'text' => 'Administrar Alumnos',
+            'url'  => '/curso-users',
+        ]
     ],
 
     /*

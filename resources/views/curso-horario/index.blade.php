@@ -60,10 +60,10 @@
                                                 <form action="{{ route('curso-horarios.destroy', $cursoHorario->id) }}"
                                                     method="POST">
                                                     <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('sesion.indexByCursoHorario', $cursoHorario->id) }}"><i
+                                                        href="{{ route('sesion.indexByCurso', $cursoHorario->id) }}"><i
                                                             class="fa fa-fw fa-book"></i> Sesiones</a>
                                                     <a class="btn btn-sm btn-secondary "
-                                                        href="{{ route('sesion.detailByCursoHorario', $cursoHorario->id) }}"><i
+                                                        href="{{ route('sesion.detailByCurso', $cursoHorario->id) }}"><i
                                                             class="fa fa-fw fa-book"></i> Ver</a>
                                                     <a class="btn btn-sm btn-success"
                                                         href="{{ route('curso-horarios.edit', $cursoHorario->id) }}"><i
