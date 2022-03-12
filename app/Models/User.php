@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,40 +13,38 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'tipo_usuario'
+    
+    static $rules = [
+		'name' => 'required',
+		'email' => 'required',
+		'tipo_usuario' => 'required',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $perPage = 20;
 
     /**
-     * The attributes that should be cast.
+     * Attributes that should be mass-assignable.
      *
-     * @var array<string, string>
+     * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $fillable = ['name','email','tipo_usuario','password'];
 
-    public function adminlte_image(){
-        return "https://upload.wikimedia.org/wikipedia/commons/4/4a/Mobile_black_bare_160X160.png";
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cursoUsers()
+    {
+        return $this->hasMany('App\Models\CursoUser', 'user_id', 'id');
     }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function exameneUsers()
+    {
+        return $this->hasMany('App\Models\ExameneUser', 'user_id', 'id');
+    }
+    
+
 }

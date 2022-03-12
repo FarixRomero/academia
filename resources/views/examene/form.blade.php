@@ -1,11 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
-        <div class="form-group">
-            {{ Form::label('sesione_id') }}
-            {{ Form::text('sesione_id', $examene->sesione_id, ['class' => 'form-control' . ($errors->has('sesione_id') ? ' is-invalid' : ''), 'placeholder' => 'Sesione Id']) }}
-            {!! $errors->first('sesione_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
+{{--         
         <div class="form-group">
             {{ Form::label('titulo') }}
             {{ Form::text('titulo', $examene->titulo, ['class' => 'form-control' . ($errors->has('titulo') ? ' is-invalid' : ''), 'placeholder' => 'Titulo']) }}
@@ -45,10 +40,55 @@
             {{ Form::label('url2') }}
             {{ Form::text('url2', $examene->url2, ['class' => 'form-control' . ($errors->has('url2') ? ' is-invalid' : ''), 'placeholder' => 'Url2']) }}
             {!! $errors->first('url2', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
+        </div> --}}
+        <div class="card-body field_wrapper">
+            <input type="hidden" class="form-control" id="sesion_id" name="sesion_id" placeholder="Enter email"
+                value="{{ request()->route('id') }}">
+            <div class="form-group">
+                <label for="titulo">Titulo</label>
+                <input type="text" class="form-control" name="titulo" placeholder="titulo" value="{{$examene->titulo}}">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripcion</label>
+                <input type="text" class="form-control" name="descripcion" placeholder="descripcion" value="{{$examene->descripcion}}">
+            </div>
+            <input type="text" placeholder="Seleciona Dia Hora" id="hora_inicio" name="hora_inicio">
+            <select name="duracion" id="duracion">
+                <option value="15">15m</option>
+                <option value="30">30m</option>
+                <option value="45">45m</option>
+                <option value="60">60m</option>
+            </select>
+            <div class="form-group" id="archivo_input">
+                <label for="">Archivo</label>
+                <input type="file" name="file" id="file" class="form-control-file" placeholder=""
+                    aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Agregar solo un archivo</small>
+            </div>
+            <div class=" form-group custom-control custom-switch">
+                <input type="hidden" name="is_active" value="0">
+                <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" value="1">
+                <label class="custom-control-label" for="is_active">Esta Activo</label>
+            </div>
 
+        </div>
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#hora_inicio", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            // defaultHour: 16,
+            // defaultMinute: 00,
+             defaultDate: "{{ $examene->hora_inicio }}" 
+        });
+    </script>
+@endsection
+@section('css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+@endsection

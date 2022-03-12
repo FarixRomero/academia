@@ -5,23 +5,21 @@
 
 @section('content_header')
 
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-6">
-                @include('examene.formIndex')
-            </div>
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Examene') }}
+                                {{ __('User') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('examenes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -39,33 +37,27 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-										<th>Titulo</th>
-										<th>Descripcion</th>
-										<th>Is Active</th>
-										<th>Hora Inicio</th>
-										<th>Duracion</th>
-										<th>Hora Fin</th>
-										<th>Url</th>
+                                        
+										<th>Name</th>
+										<th>Email</th>
+										<th>Tipo Usuario</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($examenes as $examene)
+                                    @foreach ($users as $user)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-											<td>{{ $examene->titulo }}</td>
-											<td>{{ $examene->descripcion }}</td>
-											<td>{{ $examene->is_active }}</td>
-											<td>{{ $examene->hora_inicio }}</td>
-											<td>{{ $examene->duracion }}</td>
-											<td>{{ $examene->hora_fin }}</td>
-											<td><a href="{{asset($examene->url)  }}">{{asset($examene->url)  }}</a> </td>
+                                            
+											<td>{{ $user->name }}</td>
+											<td>{{ $user->email }}</td>
+											<td>{{ $user->tipo_usuario }}</td>
 
                                             <td>
-                                                <form action="{{ route('examenes.destroy',$examene->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('examenes.show',$examene->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('examenes.edit',$examene->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -78,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $examenes->links() !!}
+                {!! $users->links() !!}
             </div>
         </div>
     </div>

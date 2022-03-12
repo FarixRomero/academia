@@ -85,56 +85,58 @@
                             <span class="card-title">Archivos enviados</span>
                         </div>
                     </div>
-                    @if (!$examenUser->url_student && $diff>0 )
-                        <form method="POST" action="{{ route('student.examen.update', $examenUser->id) }}" role="form"
-                            enctype="multipart/form-data">
-                            @csrf
-                            {{ method_field('PUT') }}
-                            <div class="card-body">
-                                <div class="form-group" id="archivo_input">
-                                    <label for="">Mensaje</label>
-                                    <input type="textarea" name="comentario_student" id="comentario_student"
-                                        class="form-control">
-                                </div>
-                                <div class="form-group" id="archivo_input">
-                                    <label for="">Archivo</label>
-                                    <input type="file" name="file_student" id="file_student" class="form-control-file"
-                                        placeholder="" aria-describedby="helpId">
-                                    <small id="helpId" class="text-muted">Agregar solo un archivo</small>
-                                </div>
-                                <div class="box-footer mt20">
-                                    <button type="submit" class="btn btn-primary">Enviar</button>
-                                </div>
-                            </div>
-                        </form>
-                    @else
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('student.examen.update', $examenUser->id) }}"
-                                role="form" enctype="multipart/form-data">
+                    @if($diffInicio<0)
+                        @if (!$examenUser->url_student && $diff>0 )
+                            <form method="POST" action="{{ route('student.examen.update', $examenUser->id) }}" role="form"
+                                enctype="multipart/form-data">
                                 @csrf
                                 {{ method_field('PUT') }}
-                                <div class="form-group" id="archivo_input">
-                                    <label for="">Mensaje</label>
-                                    <input type="textarea" name="comentario_student" id="comentario_student"
-                                        class="form-control" value="{{ $examenUser->comentario_student }}" disabled>
-                                </div>
-                                <div class="form-group" id="div_input">
-                                    <p><label for="">Archivo Enviado</label> </p>
-                                    <a href="{{ asset($examenUser->url_student) }}" download>
-                                        <i class="fa fa-file-pdf fa-3x"></i><span class="info-box-text m-1">
-                                            {{ basename($examenUser->url_student) }}</span>
-                                    </a>
-                                    @if ($diff > 0)
-                                        <a id="div_editar" href="#" onclick="clickButton()">
-                                            <span>Editar</span>
-                                        </a>
-                                        <a id="div_eliminar" href="">
-                                            Eliminar
-                                        </a>
-                                    @endif
+                                <div class="card-body">
+                                    <div class="form-group" id="archivo_input">
+                                        <label for="">Mensaje</label>
+                                        <input type="textarea" name="comentario_student" id="comentario_student"
+                                            class="form-control">
+                                    </div>
+                                    <div class="form-group" id="archivo_input">
+                                        <label for="">Archivo</label>
+                                        <input type="file" name="file_student" id="file_student" class="form-control-file"
+                                            placeholder="" aria-describedby="helpId">
+                                        <small id="helpId" class="text-muted">Agregar solo un archivo</small>
+                                    </div>
+                                    <div class="box-footer mt20">
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                    </div>
                                 </div>
                             </form>
-                        </div>
+                        @else
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('student.examen.update', $examenUser->id) }}"
+                                    role="form" enctype="multipart/form-data">
+                                    @csrf
+                                    {{ method_field('PUT') }}
+                                    <div class="form-group" id="archivo_input">
+                                        <label for="">Mensaje</label>
+                                        <input type="textarea" name="comentario_student" id="comentario_student"
+                                            class="form-control" value="{{ $examenUser->comentario_student }}" disabled>
+                                    </div>
+                                    <div class="form-group" id="div_input">
+                                        <p><label for="">Archivo Enviado</label> </p>
+                                        <a href="{{ asset($examenUser->url_student) }}" download>
+                                            <i class="fa fa-file-pdf fa-3x"></i><span class="info-box-text m-1">
+                                                {{ basename($examenUser->url_student) }}</span>
+                                        </a>
+                                        @if ($diff > 0)
+                                            <a id="div_editar" href="#" onclick="clickButton()">
+                                                <span>Editar</span>
+                                            </a>
+                                            <a id="div_eliminar" href="">
+                                                Eliminar
+                                            </a>
+                                        @endif
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
                     @endif
 
                 </div>

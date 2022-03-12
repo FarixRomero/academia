@@ -120,8 +120,9 @@ class ExameneController extends Controller
         $examenUser = ExameneUser::where('examene_id',$idExam)->where('user_id', $user_id)->first();
         $date= new Carbon($examene->hora_fin);
         $diff = Carbon::now()->diffInSeconds($examene->hora_fin, false);
+        $diffInicio = Carbon::now()->diffInSeconds($examene->hora_inicio, false);
         // $diff = $date->diffInMinutes($now);
-        return view('student.examen.show', compact('examene','examenUser','diff'));
+        return view('student.examen.show', compact('examene','examenUser','diff','diffInicio'));
     }
 
     /**
@@ -146,7 +147,7 @@ class ExameneController extends Controller
      */
     public function update(Request $request, Examene $examene)
     {
-        request()->validate(Examene::$rules);
+        // request()->validate(Examene::$rules);
 
         $examene->update($request->all());
 

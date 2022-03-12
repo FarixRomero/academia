@@ -9,6 +9,7 @@ use App\Http\Controllers\ExameneUserController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\SesioneController;
+use App\Http\Controllers\UserController;
 use App\Models\CursoHorario;
 use App\Models\CursoUser;
 use App\Models\ExameneUser;
@@ -51,6 +52,10 @@ Route::resource('files', FileController::class);
 
 Route::get('sesion/detail',[ SesioneController::class,'detail']);
 Route::get('sesion/detail/{id}',[ SesioneController::class,'detailById'])->name('sesiones.detailById');
+
+//admin
+Route::resource('users', UserController::class);
+
 
 //student
 Route::get('cursos/{id}/detail',[ SesioneController::class,'detailStudent'])->name('student.curso.detail');

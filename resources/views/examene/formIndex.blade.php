@@ -5,7 +5,8 @@
     <form method="POST" action="{{ route('examenes.store') }}" role="form" enctype="multipart/form-data">
         @csrf
         <div class="card-body field_wrapper">
-            <input type="hidden" class="form-control" id="sesion_id" name="sesion_id" placeholder="Enter email" value="{{ request()->route('id')}}">
+            <input type="hidden" class="form-control" id="sesion_id" name="sesion_id" placeholder="Enter email"
+                value="{{ request()->route('id') }}">
             <div class="form-group">
                 <label for="titulo">Titulo</label>
                 <input type="text" class="form-control" name="titulo" placeholder="titulo">
@@ -56,16 +57,17 @@
     </div>
 </div> --}}
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-    flatpickr("#hora_inicio", {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-    });
-
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#hora_inicio", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            // defaultHour: 16,
+            // defaultMinute: 00,
+             defaultDate: "2020-11-26 14:30"
+        });
+    </script>
 @endsection
 @section('css')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection
